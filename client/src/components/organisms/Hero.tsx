@@ -17,7 +17,7 @@ interface HeroProps {
 }
 
 const StyledHero = styled.section`
-  background: #B0B5E3;
+  background: ${theme.colors.primary.main};
   padding: ${theme.spacing['5xl']} 0;
   min-height: 100vh;
   display: flex;
@@ -32,7 +32,11 @@ const StyledHero = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 60%);
+    background: radial-gradient(
+      circle at top right, 
+      ${theme.colors.accent.main}40 0%, 
+      transparent 60%
+    );
     pointer-events: none;
   }
 
@@ -96,12 +100,29 @@ const IllustrationWrapper = styled.div`
   width: 100%;
   max-width: 500px;
   height: auto;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: linear-gradient(
+      135deg,
+      ${theme.colors.secondary.main}20,
+      ${theme.colors.accent.main}30
+    );
+    border-radius: ${theme.borderRadius['2xl']};
+    filter: blur(40px);
+    z-index: -1;
+    opacity: 0.6;
+  }
 
   img {
     width: 100%;
     height: auto;
     display: block;
     border-radius: ${theme.borderRadius['2xl']};
+    box-shadow: 0 20px 60px ${theme.colors.tertiary.main}30;
   }
 
   @media (max-width: ${theme.breakpoints.lg}) {
@@ -141,7 +162,11 @@ const TitleWrapper = styled(motion.div)`
     font-size: 3.5rem;
     line-height: 1.2;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, ${theme.colors.text.primary} 0%, ${theme.colors.primary.dark} 100%);
+    background: linear-gradient(
+      135deg, 
+      ${theme.colors.tertiary.main} 0%, 
+      ${theme.colors.secondary.dark} 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -175,6 +200,7 @@ const DescriptionText = styled(motion.div)`
     font-size: 1.25rem;
     line-height: 1.6;
     letter-spacing: 0.01em;
+    color: ${theme.colors.text.primary};
   }
 
   @media (max-width: ${theme.breakpoints.md}) {
@@ -258,14 +284,6 @@ export const Hero: React.FC<HeroProps> = ({
               </Text>
             </DescriptionText>
 
-            <ButtonGroup variants={itemVariants}>
-              <Button variant="primary" size="lg" onClick={onPrimaryClick}>
-                {primaryButtonText}
-              </Button>
-              <Button variant="outline" size="lg" onClick={onSecondaryClick}>
-                {secondaryButtonText}
-              </Button>
-            </ButtonGroup>
           </LeftSection>
 
           {illustrationImage && (

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaMapMarkerAlt, FaPhone, FaClock, FaExternalLinkAlt } from 'react-icons/fa';
 import { theme } from '@/styles/theme';
 import { Container } from '@/components/molecules';
 import { Heading, Text, Button } from '@/components/atoms';
@@ -38,11 +39,12 @@ const DemoHeader = styled.div`
 `;
 
 const DemoContent = styled.div`
-  background: #F5F3FF;
+  background: ${theme.colors.background.light};
   border-radius: ${theme.borderRadius['2xl']};
   padding: ${theme.spacing['3xl']};
   text-align: center;
   box-shadow: ${theme.shadows.lg};
+  border: 2px solid ${theme.colors.accent.main};
 
   @media (max-width: ${theme.breakpoints.md}) {
     padding: ${theme.spacing['2xl']};
@@ -76,7 +78,7 @@ const EnergyWave = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2px solid rgba(124, 58, 237, 0.6);
+  border: 2px solid ${theme.colors.secondary.main};
   top: 0;
   left: 0;
   animation: expandWave 2s ease-out infinite;
@@ -97,12 +99,12 @@ const EnergyWave = styled.div`
     0% {
       transform: scale(0.5);
       opacity: 1;
-      border-color: rgba(124, 58, 237, 0.8);
+      border-color: ${theme.colors.secondary.main};
     }
     100% {
       transform: scale(1.5);
       opacity: 0;
-      border-color: rgba(124, 58, 237, 0);
+      border-color: transparent;
     }
   }
 `;
@@ -124,8 +126,8 @@ const ExamplePrompts = styled.div`
 `;
 
 const ExampleBadge = styled.button`
-  background-color: #AA00FF80;
-  color: #FFFFFF;
+  background-color: ${theme.colors.secondary.main};
+  color: ${theme.colors.text.inverse};
   padding: ${theme.spacing.md} ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.lg};
   font-size: ${theme.typography.fontSize.sm};
@@ -136,9 +138,9 @@ const ExampleBadge = styled.button`
   border: none;
 
   &:hover {
-    background-color: #AA00FFCC;
+    background-color: ${theme.colors.secondary.dark};
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(170, 0, 255, 0.3);
+    box-shadow: 0 4px 12px ${theme.colors.secondary.main}60;
   }
 
   @media (max-width: ${theme.breakpoints.md}) {
@@ -155,7 +157,7 @@ const InputArea = styled.div`
   input {
     flex: 1;
     padding: ${theme.spacing.md} ${theme.spacing.lg};
-    border: none;
+    border: 2px solid ${theme.colors.accent.main};
     border-radius: ${theme.borderRadius.lg};
     font-size: ${theme.typography.fontSize.base};
     background-color: ${theme.colors.background.main};
@@ -168,7 +170,8 @@ const InputArea = styled.div`
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      border-color: ${theme.colors.secondary.main};
+      box-shadow: 0 0 0 3px ${theme.colors.secondary.main}20;
     }
   }
 
@@ -177,7 +180,7 @@ const InputArea = styled.div`
     height: 48px;
     border-radius: ${theme.borderRadius.full};
     border: none;
-    background-color: #A78BFA;
+    background-color: ${theme.colors.secondary.main};
     color: white;
     cursor: pointer;
     display: flex;
@@ -188,8 +191,13 @@ const InputArea = styled.div`
     flex-shrink: 0;
 
     &:hover {
-      background-color: #7C3AED;
+      background-color: ${theme.colors.secondary.dark};
       transform: scale(1.05);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
 
@@ -208,7 +216,8 @@ const ResponseContainer = styled(motion.div)`
   border-radius: ${theme.borderRadius.xl};
   padding: ${theme.spacing['2xl']};
   text-align: left;
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1);
+  box-shadow: 0 4px 20px ${theme.colors.secondary.main}20;
+  border: 2px solid ${theme.colors.accent.main};
 `;
 
 const ResponseSection = styled.div`
@@ -220,7 +229,7 @@ const ResponseSection = styled.div`
 `;
 
 const ResponseLabel = styled.h3`
-  color: ${theme.colors.primary.dark};
+  color: ${theme.colors.tertiary.main};
   font-size: ${theme.typography.fontSize.lg};
   font-weight: ${theme.typography.fontWeight.bold};
   margin-bottom: ${theme.spacing.md};
@@ -233,8 +242,8 @@ const ResponseText = styled.p`
 `;
 
 const LawReferenceBox = styled.div`
-  background: #F5F3FF;
-  border-left: 4px solid ${theme.colors.primary.dark};
+  background: ${theme.colors.accent.light};
+  border-left: 4px solid ${theme.colors.secondary.main};
   padding: ${theme.spacing.md} ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.md};
   margin-bottom: ${theme.spacing.lg};
@@ -248,6 +257,70 @@ const StepsList = styled.ol`
     margin-bottom: ${theme.spacing.md};
     color: ${theme.colors.text.primary};
     line-height: ${theme.typography.lineHeight.relaxed};
+  }
+`;
+
+const LocationsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: ${theme.spacing.lg};
+  margin-top: ${theme.spacing.md};
+`;
+
+const LocationCard = styled.div`
+  background: ${theme.colors.background.light};
+  border: 2px solid ${theme.colors.accent.main};
+  border-radius: ${theme.borderRadius.lg};
+  padding: ${theme.spacing.lg};
+  transition: all ${theme.transitions.base};
+
+  &:hover {
+    border-color: ${theme.colors.secondary.main};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px ${theme.colors.secondary.main}30;
+  }
+`;
+
+const LocationName = styled.h4`
+  color: ${theme.colors.tertiary.main};
+  font-size: ${theme.typography.fontSize.base};
+  font-weight: ${theme.typography.fontWeight.bold};
+  margin-bottom: ${theme.spacing.sm};
+`;
+
+const LocationDetail = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: ${theme.spacing.sm};
+  margin-bottom: ${theme.spacing.sm};
+  font-size: ${theme.typography.fontSize.sm};
+  color: ${theme.colors.text.secondary};
+
+  svg {
+    color: ${theme.colors.secondary.main};
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+`;
+
+const MapLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: ${theme.spacing.sm};
+  color: ${theme.colors.secondary.main};
+  font-size: ${theme.typography.fontSize.sm};
+  font-weight: ${theme.typography.fontWeight.medium};
+  text-decoration: none;
+  margin-top: ${theme.spacing.sm};
+  transition: all ${theme.transitions.fast};
+
+  &:hover {
+    color: ${theme.colors.secondary.dark};
+    gap: ${theme.spacing.md};
+  }
+
+  svg {
+    font-size: 12px;
   }
 `;
 
@@ -270,7 +343,6 @@ export const DemoSection: React.FC = () => {
       setResponse(result);
     } catch (error) {
       console.error('Error al procesar la consulta:', error);
-      // Aquí podrías mostrar un mensaje de error al usuario
     } finally {
       setIsLoading(false);
     }
@@ -291,9 +363,9 @@ export const DemoSection: React.FC = () => {
   };
 
   const exampleQuestions = [
-    "¿Qué pasa si me despiden y no me pagan mi liquidación?",
-    "¿Cuáles son mis derechos como inquilino?",
-    "¿Cómo puedo reclamar una herencia?"
+    "¿Qué pasa si me detienen por manejar en estado de ebriedad?",
+    "¿Cuáles son mis derechos si me multan por exceso de velocidad?",
+    "¿Qué hago si choco y el otro conductor no tiene seguro?"
   ];
 
   return (
@@ -389,6 +461,48 @@ export const DemoSection: React.FC = () => {
                     ))}
                   </StepsList>
                 </ResponseSection>
+
+                {response.locations && response.locations.length > 0 && (
+                  <ResponseSection>
+                    <ResponseLabel>📍 Lugares donde puedes acudir</ResponseLabel>
+                    <LocationsGrid>
+                      {response.locations.map((location, index) => (
+                        <LocationCard key={index}>
+                          <LocationName>{location.name}</LocationName>
+                          
+                          <LocationDetail>
+                            <FaMapMarkerAlt />
+                            <span>{location.address}</span>
+                          </LocationDetail>
+
+                          {location.phone && (
+                            <LocationDetail>
+                              <FaPhone />
+                              <span>{location.phone}</span>
+                            </LocationDetail>
+                          )}
+
+                          {location.hours && (
+                            <LocationDetail>
+                              <FaClock />
+                              <span>{location.hours}</span>
+                            </LocationDetail>
+                          )}
+
+                          {location.mapLink && (
+                            <MapLink 
+                              href={location.mapLink} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                            >
+                              Ver en Google Maps <FaExternalLinkAlt />
+                            </MapLink>
+                          )}
+                        </LocationCard>
+                      ))}
+                    </LocationsGrid>
+                  </ResponseSection>
+                )}
               </ResponseContainer>
             )}
           </AnimatePresence>
@@ -397,6 +511,5 @@ export const DemoSection: React.FC = () => {
     </StyledDemo>
   );
 };
-
 
 export default DemoSection;

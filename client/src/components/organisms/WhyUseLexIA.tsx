@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaDollarSign, FaUsers, FaChartLine, FaMedal, FaCheck, FaX } from 'react-icons/fa6';
+import { FaDollarSign, FaClock, FaShield, FaMapPin, FaCheck, FaX } from 'react-icons/fa6';
 import { theme } from '@/styles/theme';
 import { Container } from '@/components/molecules';
 import { Heading, Text } from '@/components/atoms';
@@ -55,12 +55,20 @@ const BenefitsGrid = styled.div`
 `;
 
 const BenefitCard = styled.div`
-  background: ${theme.colors.background.dark};
+  background: ${theme.colors.background.light};
+  border: 2px solid ${theme.colors.accent.main};
   border-radius: ${theme.borderRadius.lg};
   padding: ${theme.spacing['2xl']};
   display: flex;
   gap: ${theme.spacing.lg};
   align-items: flex-start;
+  transition: all ${theme.transitions.base};
+
+  &:hover {
+    border-color: ${theme.colors.secondary.main};
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px ${theme.colors.secondary.main}20;
+  }
 `;
 
 const BenefitIcon = styled.div`
@@ -71,7 +79,7 @@ const BenefitIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${theme.colors.primary.main};
+  color: ${theme.colors.secondary.main};
 `;
 
 const BenefitContent = styled.div`
@@ -83,6 +91,7 @@ const BenefitContent = styled.div`
 const BenefitTitle = styled(Heading)`
   font-size: ${theme.typography.fontSize.lg};
   margin: 0;
+  color: ${theme.colors.tertiary.main};
 `;
 
 const BenefitDescription = styled(Text)`
@@ -98,13 +107,14 @@ const ComparisonTable = styled.div`
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  background: ${theme.colors.background.main};
+  background: ${theme.colors.background.light};
   border-radius: ${theme.borderRadius.lg};
   overflow: hidden;
   box-shadow: ${theme.shadows.md};
+  border: 2px solid ${theme.colors.accent.main};
 
   th {
-    background-color: ${theme.colors.primary.dark};
+    background-color: ${theme.colors.tertiary.main};
     color: ${theme.colors.text.inverse};
     padding: ${theme.spacing.lg};
     text-align: left;
@@ -114,8 +124,9 @@ const Table = styled.table`
 
   td {
     padding: ${theme.spacing.lg};
-    border-bottom: 1px solid ${theme.colors.border};
+    border-bottom: 1px solid ${theme.colors.accent.main};
     font-size: ${theme.typography.fontSize.sm};
+    color: ${theme.colors.text.primary};
   }
 
   tr:last-child td {
@@ -123,7 +134,7 @@ const Table = styled.table`
   }
 
   tr:nth-child(even) {
-    background-color: ${theme.colors.background.dark};
+    background-color: ${theme.colors.background.main};
   }
 
   @media (max-width: ${theme.breakpoints.md}) {
@@ -154,26 +165,31 @@ const CrossIcon = styled.span`
   justify-content: center;
 `;
 
+const HighlightText = styled.span`
+  color: ${theme.colors.secondary.main};
+  font-weight: ${theme.typography.fontWeight.bold};
+`;
+
 const benefits: Benefit[] = [
   {
     icon: <FaDollarSign size={40} />,
-    title: 'Ahorra hasta 95%',
-    description: 'Una consulta legal tradicional cuesta $1,500-$3,000 MXN. Con LexIA, consultas ilimitadas desde $299/mes',
+    title: 'Ahorra Tiempo y Dinero',
+    description: 'Evita multas de hasta $3,000 MXN por infracciones. Conoce tus derechos al instante sin pagar consultas legales de $800-$1,500 MXN.',
   },
   {
-    icon: <FaUsers size={40} />,
-    title: '+10,000 Usuarios',
-    description: 'Miles de personas y empresas ya confían en LexIA para sus consultas legales diarias',
+    icon: <FaClock size={40} />,
+    title: 'Respuestas Inmediatas',
+    description: 'Obtén orientación legal en menos de 5 segundos. No esperes días o semanas para saber qué hacer después de un accidente o multa.',
   },
   {
-    icon: <FaChartLine size={40} />,
-    title: 'ROI Inmediato',
-    description: 'Reduce costos legales operativos y obtén respuestas al instante sin esperar citas',
+    icon: <FaShield size={40} />,
+    title: 'Conoce tus Derechos',
+    description: 'Aprende cómo impugnar multas injustas, qué hacer en accidentes y cómo protegerte ante abusos de autoridad.',
   },
   {
-    icon: <FaMedal size={40} />,
-    title: 'Precisión Garantizada',
-    description: 'Todas nuestras respuestas están verificadas y actualizadas constantemente con cambios legislativos',
+    icon: <FaMapPin size={40} />,
+    title: 'Ubicaciones Precisas',
+    description: 'Te indicamos exactamente dónde acudir: corralones, oficinas de tránsito, ministerios públicos y más, con direcciones y horarios.',
   },
 ];
 
@@ -183,7 +199,7 @@ export const WhyUseLexIA: React.FC = () => {
       <Container>
         <SectionHeader>
           <Heading level={1}>¿Por Qué Usar LexIA?</Heading>
-          <Text size="lg">La forma más rápida, económica y eficiente de obtener orientación legal</Text>
+          <Text size="lg">Tu asistente legal de tránsito disponible 24/7 para proteger tus derechos</Text>
         </SectionHeader>
 
         <BenefitsGrid>
@@ -203,34 +219,57 @@ export const WhyUseLexIA: React.FC = () => {
             <thead>
               <tr>
                 <th>Característica</th>
-                <th>Consulta Tradicional</th>
-                <th>LexIA</th>
+                <th>Sin LexIA</th>
+                <th>Con LexIA</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Costo por consulta</td>
-                <td>$1,500 - $3,000</td>
-                <td>Desde $299/mes ilimitado</td>
+                <td>Costo de asesoría legal</td>
+                <td>$800 - $1,500 por consulta</td>
+                <td><HighlightText>Gratis / Desde $299/mes</HighlightText></td>
               </tr>
               <tr>
                 <td>Tiempo de respuesta</td>
-                <td>1-7 días</td>
-                <td>&lt; 2 segundos</td>
+                <td>1-5 días hábiles</td>
+                <td><HighlightText>&lt; 5 segundos</HighlightText></td>
               </tr>
               <tr>
                 <td>Disponibilidad</td>
-                <td>Horario de oficina</td>
-                <td>24/7/365</td>
+                <td>Lunes a Viernes 9am-5pm</td>
+                <td><HighlightText>24/7 todos los días</HighlightText></td>
               </tr>
               <tr>
-                <td>Consultas ilimitadas</td>
+                <td>Ubicaciones y contactos</td>
                 <td>
                   <CrossIcon><FaX size={20} /></CrossIcon>
                 </td>
                 <td>
                   <CheckIcon><FaCheck size={20} /></CheckIcon>
                 </td>
+              </tr>
+              <tr>
+                <td>Referencias legales actualizadas</td>
+                <td>
+                  <CrossIcon><FaX size={20} /></CrossIcon>
+                </td>
+                <td>
+                  <CheckIcon><FaCheck size={20} /></CheckIcon>
+                </td>
+              </tr>
+              <tr>
+                <td>Pasos específicos a seguir</td>
+                <td>
+                  <CrossIcon><FaX size={20} /></CrossIcon>
+                </td>
+                <td>
+                  <CheckIcon><FaCheck size={20} /></CheckIcon>
+                </td>
+              </tr>
+              <tr>
+                <td>Impugnación de multas</td>
+                <td>Requiere abogado (costo adicional)</td>
+                <td><HighlightText>Te guiamos paso a paso</HighlightText></td>
               </tr>
             </tbody>
           </Table>
@@ -239,4 +278,3 @@ export const WhyUseLexIA: React.FC = () => {
     </StyledWhyUseLexIA>
   );
 };
-

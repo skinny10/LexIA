@@ -2,36 +2,46 @@
 export const theme = {
   colors: {
     primary: {
-      light: '#E8D5F2',
-      main: '#A78BFA',
-      dark: '#7C3AED',
-      darker: '#5B21B6',
+      light: '#F8F4EF',     // Versión más clara del primary
+      main: '#F8F4EF',      // Primary - Fondo de Pantalla
+      dark: '#E8D5C8',      // Versión más oscura
+      darker: '#D4BBA8',    // Versión aún más oscura
     },
     secondary: {
-      light: '#BFDBFE',
-      main: '#3B82F6',
-      dark: '#1E40AF',
+      light: '#E8ADA0',     // Versión más clara
+      main: '#D19A86',      // Secondary - Botones de Acción
+      dark: '#B8876F',      // Versión más oscura
+    },
+    tertiary: {
+      light: '#4A3F3A',     // Versión más clara
+      main: '#3D2E28',      // Tertiary - Texto Principal / Iconos
+      dark: '#2D1F1A',      // Versión más oscura
     },
     accent: {
-      light: '#FCA5A5',
-      main: '#EF4444',
-      dark: '#DC2626',
+      light: '#F4E8E0',     // Versión más clara
+      main: '#E8D9CE',      // Accent - Acentos Sutiles / Bordes
+      dark: '#D9C4B5',      // Versión más oscura
     },
     background: {
-      light: '#F9F5FF',
-      main: '#FFFFFF',
-      dark: '#F3F0FF',
+      light: '#FFFFFF',
+      main: '#F8F4EF',      // Fondo principal
+      dark: '#F0EBE6',
     },
     text: {
-      primary: '#1F2937',
-      secondary: '#6B7280',
-      light: '#9CA3AF',
-      inverse: '#FFFFFF',
+      primary: '#3D2E28',   // Texto principal (tertiary)
+      secondary: '#6B5B54', // Texto secundario (más claro que tertiary)
+      light: '#9A8A82',     // Texto claro
+      inverse: '#FFFFFF',   // Texto inverso (sobre fondos oscuros)
     },
-    border: '#E5E7EB',
+    border: '#E8D9CE',      // Accent para bordes
     success: '#10B981',
     warning: '#F59E0B',
     error: '#EF4444',
+    
+    // Color específico para el Hero
+    hero: {
+      background: '#F8F4EF',  // Primary color
+    },
   },
   typography: {
     fontFamily: {
@@ -85,11 +95,11 @@ export const theme = {
     full: '9999px',
   },
   shadows: {
-    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    sm: '0 1px 2px 0 rgba(61, 46, 40, 0.05)',
+    md: '0 4px 6px -1px rgba(61, 46, 40, 0.1)',
+    lg: '0 10px 15px -3px rgba(61, 46, 40, 0.1)',
+    xl: '0 20px 25px -5px rgba(61, 46, 40, 0.1)',
+    '2xl': '0 25px 50px -12px rgba(61, 46, 40, 0.25)',
   },
   breakpoints: {
     xs: '320px',
@@ -107,4 +117,3 @@ export const theme = {
 };
 
 export type Theme = typeof theme;
-

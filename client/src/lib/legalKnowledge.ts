@@ -3,71 +3,201 @@ export interface LegalAnswer {
   answer: string;
   lawReference: string;
   steps: string[];
+  locations?: {
+    name: string;
+    address: string;
+    phone?: string;
+    hours?: string;
+    mapLink?: string;
+  }[];
 }
-
 
 export const LEGAL_KNOWLEDGE: LegalAnswer[] = [
   {
-    question: "¿Qué pasa si me despiden y no me pagan mi liquidación?",
-    answer: "Si te despiden sin causa justificada y no te pagan tu liquidación, tienes derecho a iniciar un proceso legal para reclamar el pago de tres meses de salario (indemnización constitucional), la prima de antigüedad (si aplica), y las partes proporcionales de aguinaldo, vacaciones y prima vacacional.",
-    lawReference: "Artículo 48 de la Ley Federal del Trabajo (LFT).",
+    question: "¿Qué pasa si me detienen por manejar en estado de ebriedad?",
+    answer: "Si te detienen por conducir bajo los efectos del alcohol, puedes ser arrestado administrativamente por 20 a 36 horas, pagar una multa considerable (que varía según el estado, generalmente entre 80 y 100 días de salario mínimo), y tu vehículo puede ser enviado al corralón. Además, tu licencia puede ser suspendida temporalmente.",
+    lawReference: "Reglamentos de Tránsito Estatales y Ley General de Salud (Artículo 421).",
     steps: [
-      "Acudir al Centro de Conciliación y Registro Laboral para iniciar una audiencia de conciliación.",
-      "Si no hay acuerdo, se emitirá una constancia de no conciliación.",
-      "Presentar una demanda ante el Tribunal Laboral competente.",
-      "Reunir pruebas (contrato, recibos de nómina, testigos) para el juicio."
+      "Si eres detenido, no te resistas y coopera con la autoridad.",
+      "Tienes derecho a solicitar el alcoholímetro para verificar tu estado.",
+      "Paga la multa correspondiente para recuperar tu vehículo.",
+      "Si consideras que la detención fue injusta, presenta una queja ante la Comisión de Derechos Humanos o solicita asesoría legal."
+    ],
+    locations: [
+      {
+        name: "Secretaría de Movilidad y Transporte - Tuxtla Gutiérrez",
+        address: "Blvd. Belisario Domínguez 1641, Col. Xamaipak, Tuxtla Gutiérrez, Chiapas",
+        phone: "961 617 9800",
+        hours: "Lunes a Viernes 9:00 AM - 5:00 PM",
+        mapLink: "https://maps.google.com/?q=Secretaría+de+Movilidad+Tuxtla+Gutiérrez"
+      },
+      {
+        name: "Comisión Estatal de Derechos Humanos Chiapas",
+        address: "1a. Poniente Sur 154, Col. Centro, Tuxtla Gutiérrez, Chiapas",
+        phone: "961 602 8990",
+        hours: "Lunes a Viernes 8:00 AM - 4:00 PM",
+        mapLink: "https://maps.google.com/?q=CEDH+Chiapas+Tuxtla"
+      }
     ]
   },
   {
-    question: "¿Cuáles son mis derechos como inquilino?",
-    answer: "Como inquilino, tienes derecho a un contrato de arrendamiento por escrito, a que el inmueble te sea entregado en buenas condiciones de habitabilidad, a que se te notifique con antelación si el arrendador desea terminar el contrato, y a que se te devuelva el depósito (si no hay daños) al finalizar el contrato.",
-    lawReference: "Código Civil Federal (o el Código Civil de la entidad federativa correspondiente) en materia de Arrendamiento.",
+    question: "¿Cuáles son mis derechos si me multan por exceso de velocidad?",
+    answer: "Si te multan por exceso de velocidad, tienes derecho a recibir una boleta con los detalles de la infracción, incluyendo el lugar, hora, velocidad registrada y el fundamento legal. Puedes solicitar evidencias (fotos o video del radar) y, si consideras que la multa es injusta, impugnarla ante la autoridad correspondiente.",
+    lawReference: "Reglamentos de Tránsito Estatales y el Código de Procedimientos Administrativos de cada entidad.",
     steps: [
-      "Revisar detalladamente el contrato de arrendamiento antes de firmar.",
-      "Exigir recibos de pago de renta.",
-      "Documentar cualquier daño o reparación necesaria al inicio y final del contrato.",
-      "Si hay controversia, buscar mediación o asesoría legal."
+      "Solicita la boleta de infracción completa con todos los datos.",
+      "Verifica si el radar estaba calibrado y si el oficial estaba autorizado.",
+      "Si deseas impugnar, presenta un recurso de inconformidad ante la autoridad de tránsito dentro del plazo establecido (generalmente 15 días hábiles).",
+      "Reúne evidencias (fotos, testigos, documentos) para tu defensa."
+    ],
+    locations: [
+      {
+        name: "Dirección de Tránsito Municipal - Tuxtla Gutiérrez",
+        address: "11a. Sur Poniente 1050, Col. Centro, Tuxtla Gutiérrez, Chiapas",
+        phone: "961 602 0900 ext. 6400",
+        hours: "Lunes a Viernes 8:00 AM - 3:00 PM",
+        mapLink: "https://maps.google.com/?q=Dirección+Tránsito+Tuxtla+Gutiérrez"
+      },
+      {
+        name: "Módulo de Atención Ciudadana - Plaza Bonampak",
+        address: "Blvd. Belisario Domínguez 302, Plaza Bonampak, Tuxtla Gutiérrez",
+        phone: "961 125 4100",
+        hours: "Lunes a Sábado 9:00 AM - 7:00 PM",
+        mapLink: "https://maps.google.com/?q=Plaza+Bonampak+Tuxtla"
+      }
     ]
   },
   {
-    question: "¿Cómo puedo reclamar una herencia?",
-    answer: "Para reclamar una herencia, primero debe determinarse si existe un testamento. Si existe, se inicia un juicio sucesorio testamentario. Si no existe, se inicia un juicio sucesorio intestamentario, donde la ley define a los herederos (generalmente descendientes, ascendientes y cónyuge).",
-    lawReference: "Código Civil Federal, Libro Tercero: De las Sucesiones.",
+    question: "¿Qué hago si choco y el otro conductor no tiene seguro?",
+    answer: "Si el otro conductor no tiene seguro, debes levantar un reporte de accidente con las autoridades de tránsito. Toma fotos del lugar, intercambia información con el conductor (nombre, placas, identificación) y busca testigos. Puedes iniciar un proceso legal para reclamar daños y perjuicios, aunque puede ser más complejo sin seguro de por medio.",
+    lawReference: "Reglamentos de Tránsito Estatales y Código Civil en materia de responsabilidad civil.",
     steps: [
-      "Obtener el acta de defunción del difunto.",
-      "Solicitar al Archivo General de Notarías el informe sobre la existencia de testamento.",
-      "Contratar a un abogado para iniciar el juicio sucesorio (testamentario o intestamentario).",
-      "Realizar el inventario, avalúo, y partición de los bienes entre los herederos."
+      "Llama a las autoridades de tránsito para que levanten un reporte oficial del accidente.",
+      "Toma fotos de los vehículos, daños y el lugar del accidente.",
+      "Intercambia información con el otro conductor (datos personales, placas, contacto).",
+      "Si hay lesionados, llama a una ambulancia de inmediato.",
+      "Consulta con un abogado para iniciar una demanda civil si es necesario."
+    ],
+    locations: [
+      {
+        name: "Centro de Justicia Cívica - Tuxtla Gutiérrez",
+        address: "1a. Norte Poniente 1450, Col. Centro, Tuxtla Gutiérrez, Chiapas",
+        phone: "961 688 5800",
+        hours: "Lunes a Viernes 9:00 AM - 5:00 PM",
+        mapLink: "https://maps.google.com/?q=Centro+Justicia+Cívica+Tuxtla"
+      },
+      {
+        name: "Ministerio Público - Agencia del MP en Tránsito",
+        address: "Libramiento Norte Poniente s/n, Col. Plan de Ayala, Tuxtla Gutiérrez",
+        phone: "961 617 9600",
+        hours: "24 horas (Emergencias)",
+        mapLink: "https://maps.google.com/?q=Ministerio+Publico+Transito+Tuxtla"
+      },
+      {
+        name: "Cruz Roja Mexicana - Delegación Tuxtla Gutiérrez",
+        address: "5a. Poniente Norte 1480, Col. Centro, Tuxtla Gutiérrez",
+        phone: "961 612 1313",
+        hours: "Emergencias 24 horas",
+        mapLink: "https://maps.google.com/?q=Cruz+Roja+Tuxtla+Gutiérrez"
+      }
     ]
   },
   {
-    question: "¿Qué es el derecho de réplica?",
-    answer: "El derecho de réplica es el derecho de toda persona a que se le aclare la información inexacta o falsa que se haya difundido sobre ella, sus familiares o sus bienes en cualquier medio de comunicación.",
-    lawReference: "Ley Reglamentaria del Artículo 6o., párrafo primero, de la Constitución Política de los Estados Unidos Mexicanos, en materia del Derecho de Réplica.",
+    question: "¿Puedo recuperar mi auto del corralón sin pagar la multa?",
+    answer: "No, generalmente debes pagar la multa correspondiente y los gastos de arrastre y almacenaje (estadía) para recuperar tu vehículo del corralón. Sin embargo, algunas entidades ofrecen descuentos si pagas dentro de cierto plazo (pago inmediato) o facilidades de pago en casos de multas altas.",
+    lawReference: "Reglamentos de Tránsito Estatales y Leyes de Ingresos de cada entidad federativa.",
     steps: [
-      "Identificar la información inexacta o falsa y el medio que la difundió.",
-      "Presentar la solicitud de réplica por escrito al director del medio en un plazo de cinco días hábiles.",
-      "Si el medio no publica la réplica, se puede acudir a los tribunales federales."
+      "Acude a la oficina de tránsito correspondiente con tu identificación y documentos del vehículo.",
+      "Paga la multa y los costos de grúa y estadía.",
+      "Presenta el comprobante de pago en el corralón para liberar tu vehículo.",
+      "Si no puedes pagar de inmediato, pregunta por opciones de descuento o facilidades de pago."
+    ],
+    locations: [
+      {
+        name: "Corralón Municipal - Tuxtla Gutiérrez",
+        address: "Libramiento Norte Poniente Km 3.5, Col. Terán, Tuxtla Gutiérrez",
+        phone: "961 602 0900 ext. 6450",
+        hours: "Lunes a Viernes 8:00 AM - 4:00 PM",
+        mapLink: "https://maps.google.com/?q=Corralón+Municipal+Tuxtla"
+      },
+      {
+        name: "Caja de Atención - Dirección de Tránsito",
+        address: "11a. Sur Poniente 1050, Col. Centro, Tuxtla Gutiérrez",
+        phone: "961 602 0900 ext. 6400",
+        hours: "Lunes a Viernes 8:00 AM - 3:00 PM",
+        mapLink: "https://maps.google.com/?q=Caja+Transito+Tuxtla"
+      }
     ]
   },
   {
-    question: "¿Cuál es el plazo para demandar un despido injustificado?",
-    answer: "El trabajador tiene un plazo de dos meses para ejercer la acción de demandar un despido injustificado, contados a partir del día siguiente a la fecha del despido.",
-    lawReference: "Artículo 518 de la Ley Federal del Trabajo (LFT).",
+    question: "¿Qué hago si me chocan y se dan a la fuga?",
+    answer: "Si te chocan y el conductor se da a la fuga, debes reportar el incidente de inmediato a las autoridades de tránsito y obtener un reporte oficial. Si tienes seguro, contacta a tu aseguradora para iniciar el proceso de indemnización. También puedes presentar una denuncia penal ante el Ministerio Público por el delito de abandono del lugar del accidente.",
+    lawReference: "Código Penal Federal o Estatal (delito de abandono del lugar del accidente) y Reglamentos de Tránsito.",
     steps: [
-      "Acudir al Centro de Conciliación y Registro Laboral para iniciar una audiencia de conciliación.",
-      "Si no hay acuerdo, se emitirá una constancia de no conciliación.",
-      "Presentar una demanda ante el Tribunal Laboral competente.",
-      "Reunir pruebas (contrato, recibos de nómina, testigos) para el juicio."
+      "Llama de inmediato a las autoridades de tránsito y, si es necesario, al 911.",
+      "Toma fotos del lugar, daños del vehículo y, si es posible, de las placas del vehículo que huyó.",
+      "Busca testigos que puedan proporcionar información del otro conductor.",
+      "Contacta a tu aseguradora para reportar el siniestro (si cuentas con cobertura amplia).",
+      "Presenta una denuncia penal ante el Ministerio Público."
+    ],
+    locations: [
+      {
+        name: "Número de Emergencias 911",
+        address: "Servicio de emergencias disponible en todo Chiapas",
+        phone: "911",
+        hours: "24 horas",
+        mapLink: "null"
+      },
+      {
+        name: "Fiscalía General del Estado - Unidad de Tránsito",
+        address: "Libramiento Norte Poniente s/n, Col. Plan de Ayala, Tuxtla Gutiérrez",
+        phone: "961 617 9600",
+        hours: "24 horas",
+        mapLink: "https://maps.google.com/?q=Fiscalía+Transito+Tuxtla"
+      },
+      {
+        name: "Dirección de Tránsito Municipal (Denuncias)",
+        address: "11a. Sur Poniente 1050, Col. Centro, Tuxtla Gutiérrez",
+        phone: "961 602 0900 ext. 6400",
+        hours: "24 horas para emergencias",
+        mapLink: "https://maps.google.com/?q=Dirección+Tránsito+Tuxtla"
+      }
+    ]
+  },
+  {
+    question: "¿Cuál es el plazo para impugnar una multa de tránsito?",
+    answer: "El plazo para impugnar una multa de tránsito varía según la entidad federativa, pero generalmente es de 15 días hábiles contados a partir de que recibes la notificación de la infracción. Debes presentar un recurso de inconformidad ante la autoridad de tránsito correspondiente.",
+    lawReference: "Reglamentos de Tránsito Estatales y Códigos de Procedimientos Administrativos.",
+    steps: [
+      "Revisa la boleta de infracción para conocer el plazo exacto de impugnación.",
+      "Redacta un escrito de inconformidad explicando las razones por las que consideras injusta la multa.",
+      "Adjunta evidencias (fotos, videos, documentos) que respalden tu defensa.",
+      "Presenta el recurso ante la oficina de tránsito correspondiente dentro del plazo establecido.",
+      "Espera la resolución de la autoridad, que generalmente se emite en un plazo de 30 a 60 días."
+    ],
+    locations: [
+      {
+        name: "Oficina de Recursos e Inconformidades - Tránsito Municipal",
+        address: "11a. Sur Poniente 1050, Col. Centro, Tuxtla Gutiérrez",
+        phone: "961 602 0900 ext. 6410",
+        hours: "Lunes a Viernes 8:00 AM - 3:00 PM",
+        mapLink: "https://maps.google.com/?q=Recursos+Transito+Tuxtla"
+      },
+      {
+        name: "Oficialía de Partes - Secretaría de Movilidad",
+        address: "Blvd. Belisario Domínguez 1641, Col. Xamaipak, Tuxtla Gutiérrez",
+        phone: "961 617 9800",
+        hours: "Lunes a Viernes 9:00 AM - 3:00 PM",
+        mapLink: "https://maps.google.com/?q=Secretaría+Movilidad+Tuxtla"
+      }
     ]
   }
 ];
 
-
 export const searchLegalKnowledge = (query: string): LegalAnswer | null => {
   const normalizedQuery = query.toLowerCase().trim();
 
-  
+  // Buscar coincidencia exacta o parcial
   for (const item of LEGAL_KNOWLEDGE) {
     const normalizedItemQuestion = item.question.toLowerCase().trim();
     if (normalizedItemQuestion.includes(normalizedQuery) || normalizedQuery.includes(normalizedItemQuestion)) {
@@ -75,15 +205,25 @@ export const searchLegalKnowledge = (query: string): LegalAnswer | null => {
     }
   }
 
-  
+  // Respuesta por defecto si no hay coincidencia
   return {
     question: query,
-    answer: "Lo siento, no encontré una respuesta específica en mi base de conocimiento para esa consulta. Sin embargo, LexIA está entrenada para analizar tu pregunta y proporcionarte la referencia legal más relevante y los pasos a seguir.",
-    lawReference: "Consulta Legal General",
+    answer: "Lo siento, no encontré una respuesta específica en mi base de conocimiento para esa consulta sobre tránsito. Sin embargo, LexIA está especializada en leyes de tránsito en México y puede ayudarte con infracciones, accidentes, multas, licencias y más.",
+    lawReference: "Reglamentos de Tránsito de México",
     steps: [
-      "Reformular la pregunta con más detalles.",
-      "Consultar a un abogado especializado.",
-      "Revisar la legislación federal y local aplicable."
+      "Reformular la pregunta con más detalles específicos sobre tu situación de tránsito.",
+      "Consultar el Reglamento de Tránsito de tu estado.",
+      "Buscar asesoría legal especializada en derecho de tránsito.",
+      "Contactar a la autoridad de tránsito de tu localidad para más información."
+    ],
+    locations: [
+      {
+        name: "Dirección de Tránsito Municipal - Tuxtla Gutiérrez",
+        address: "11a. Sur Poniente 1050, Col. Centro, Tuxtla Gutiérrez",
+        phone: "961 602 0900 ext. 6400",
+        hours: "Lunes a Viernes 8:00 AM - 3:00 PM",
+        mapLink: "https://maps.google.com/?q=Dirección+Tránsito+Tuxtla"
+      }
     ]
   };
 };

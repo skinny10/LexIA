@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaRobot, FaDatabase, FaLink, FaCloud, FaLock, FaBrain } from 'react-icons/fa6';
+import { FaPython, FaRocket, FaLayerGroup, FaDatabase, FaShield, FaLock, FaFeather, FaBox, FaGaugeHigh, FaCompass, FaGlobe, FaPalette } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
 import { theme } from '@/styles/theme';
 import { Container } from '@/components/molecules';
@@ -9,6 +9,7 @@ interface Tech {
   icon: React.ReactNode;
   title: string;
   description: string;
+  category?: 'backend' | 'frontend';
 }
 
 const StyledTechStack = styled.section`
@@ -60,21 +61,15 @@ const TechGrid = styled.div`
 `;
 
 const TechCard = styled(motion.div)`
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: ${theme.colors.background.main};
+  border: 2px solid ${theme.colors.accent.main};
   border-radius: ${theme.borderRadius.xl};
   padding: ${theme.spacing['3xl']};
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(61, 46, 40, 0.08);
   position: relative;
   overflow: hidden;
-  z-index: 1;
 
   &::before {
     content: '';
@@ -83,50 +78,24 @@ const TechCard = styled(motion.div)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(
-      circle at top right,
-      ${theme.colors.primary.main}10,
+    background: linear-gradient(
+      135deg,
+      ${theme.colors.secondary.main}15,
       transparent 70%
     );
     opacity: 0;
     transition: opacity 0.4s ease;
-    z-index: -1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    background: conic-gradient(
-      from 0deg at 50% 50%,
-      ${theme.colors.primary.light}10,
-      ${theme.colors.primary.main}10,
-      ${theme.colors.primary.dark}10,
-      ${theme.colors.primary.light}10
-    );
-    transform: translate(-50%, -50%) rotate(0deg);
-    top: 50%;
-    left: 50%;
-    opacity: 0;
-    transition: all 0.6s ease;
-    z-index: -2;
   }
 
   &:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.2),
-      0 0 20px ${theme.colors.primary.main}20;
-    border-color: ${theme.colors.primary.main}40;
+      0 20px 40px rgba(61, 46, 40, 0.15),
+      0 0 20px ${theme.colors.secondary.main}30;
+    border-color: ${theme.colors.secondary.main};
 
     &::before {
       opacity: 1;
-    }
-
-    &::after {
-      opacity: 1;
-      transform: translate(-50%, -50%) rotate(360deg);
     }
   }
 `;
@@ -141,7 +110,7 @@ const IconWrapper = styled(motion.div)`
   width: 100px;
   margin: 0 auto ${theme.spacing.xl};
   position: relative;
-  color: ${theme.colors.primary.main};
+  color: ${theme.colors.secondary.main};
 
   &::before {
     content: '';
@@ -150,8 +119,8 @@ const IconWrapper = styled(motion.div)`
     border-radius: 50%;
     padding: 3px;
     background: linear-gradient(135deg,
-      ${theme.colors.primary.light},
-      ${theme.colors.primary.main}
+      ${theme.colors.secondary.light},
+      ${theme.colors.secondary.main}
     );
     -webkit-mask: 
       linear-gradient(#fff 0 0) content-box, 
@@ -161,7 +130,7 @@ const IconWrapper = styled(motion.div)`
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    opacity: 0.7;
+    opacity: 0.5;
     transition: opacity 0.3s ease;
   }
 
@@ -172,9 +141,9 @@ const IconWrapper = styled(motion.div)`
     border-radius: 50%;
     background: conic-gradient(
       from 0deg,
-      ${theme.colors.primary.light}00,
-      ${theme.colors.primary.main}40,
-      ${theme.colors.primary.light}00
+      ${theme.colors.secondary.light}00,
+      ${theme.colors.secondary.main}60,
+      ${theme.colors.secondary.light}00
     );
     animation: spin 4s linear infinite;
     opacity: 0;
@@ -182,7 +151,7 @@ const IconWrapper = styled(motion.div)`
   }
 
   ${TechCard}:hover & {
-    color: ${theme.colors.primary.dark};
+    color: ${theme.colors.secondary.dark};
 
     &::before {
       opacity: 1;
@@ -215,99 +184,166 @@ const TechDescription = styled(Text)`
   line-height: ${theme.typography.lineHeight.relaxed};
 `;
 
+const CategorySection = styled.div`
+  margin-bottom: ${theme.spacing['4xl']};
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    margin-bottom: ${theme.spacing['3xl']};
+  }
+`;
+
+const CategoryTitle = styled(Heading)`
+  text-align: center;
+  margin-bottom: ${theme.spacing['2xl']};
+  color: ${theme.colors.text.primary};
+  font-size: ${theme.typography.fontSize.xl};
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: ${theme.typography.fontSize.lg};
+    margin-bottom: ${theme.spacing.xl};
+  }
+`;
+
 const technologies: Tech[] = [
   {
-    icon: <FaRobot size={48} />,
-    title: 'GPT-4 & Claude',
-    description: 'Modelos de lenguaje de última generación fine-tuned con legislación mexicana',
+    icon: <FaPython size={48} />,
+    title: 'Lenguaje: Python',
+    description: 'Lenguaje potente, legible y ampliamente utilizado en inteligencia artificial y desarrollo backend. Permite integrar modelos de lenguaje y servicios web con gran eficiencia.',
+    category: 'backend',
+  },
+  {
+    icon: <FaRocket size={48} />,
+    title: 'FastAPI',
+    description: 'Framework moderno, asíncrono y de alto rendimiento para construir APIs RESTful. Ofrece validación automática de datos y documentación interactiva.',
+    category: 'backend',
+  },
+  {
+    icon: <FaLayerGroup size={48} />,
+    title: 'Arquitectura Hexagonal',
+    description: 'Separa la lógica de negocio del acceso a datos y las interfaces externas, logrando un código modular, limpio y mantenible.',
+    category: 'backend',
   },
   {
     icon: <FaDatabase size={48} />,
-    title: 'Vector Database',
-    description: 'Pinecone para búsqueda semántica ultrarrápida en millones de documentos legales',
+    title: 'SQLAlchemy + Alembic',
+    description: 'SQLAlchemy como ORM para facilitar la comunicación con la base de datos. Alembic para migraciones controladas del esquema.',
+    category: 'backend',
   },
   {
-    icon: <FaLink size={48} />,
-    title: 'LangChain',
-    description: 'Framework para orquestar prompts complejos y cadenas de razonamiento',
-  },
-  {
-    icon: <FaCloud size={48} />,
-    title: 'AWS & Vercel',
-    description: 'Infraestructura escalable y de alta disponibilidad en la nube',
+    icon: <FaShield size={48} />,
+    title: 'PyJWT + bcrypt',
+    description: 'PyJWT maneja tokens JWT para sesiones seguras. bcrypt cifra contraseñas con hashing resistente a ataques de fuerza bruta.',
+    category: 'backend',
   },
   {
     icon: <FaLock size={48} />,
-    title: 'Seguridad Enterprise',
-    description: 'Encriptación end-to-end y cumplimiento con estándares de privacidad',
+    title: 'slowapi',
+    description: 'Middleware de rate limiting que protege la API de abusos o ataques de denegación de servicio (DoS), limitando las solicitudes por IP.',
+    category: 'backend',
   },
   {
-    icon: <FaBrain size={48} />,
-    title: 'RAG Architecture',
-    description: 'Retrieval-Augmented Generation para respuestas precisas y actualizadas',
+    icon: <FaFeather size={48} />,
+    title: 'Flutter (3.9.2) + Dart (3.9.2)',
+    description: 'Framework multiplataforma de Google. Una sola base de código para Web, Android e iOS, garantizando alto rendimiento e interfaz fluida y moderna.',
+    category: 'frontend',
+  },
+  {
+    icon: <FaBox size={48} />,
+    title: 'Clean Architecture + MVVM',
+    description: 'Organiza el proyecto en capas bien definidas: Domain, Data y Presentation, facilitando mantenibilidad, escalabilidad y pruebas unitarias.',
+    category: 'frontend',
+  },
+  {
+    icon: <FaGaugeHigh size={48} />,
+    title: 'State Management con Provider + get_it',
+    description: 'Provider para gestión reactiva del estado y get_it como Service Locator para inyección de dependencias, logrando flujo de datos limpio y desacoplado.',
+    category: 'frontend',
+  },
+  {
+    icon: <FaCompass size={48} />,
+    title: 'go_router',
+    description: 'Sistema de navegación declarativa que permite rutas seguras, dinámicas y anidadas, simplificando la gestión de pantallas y módulos.',
+    category: 'frontend',
+  },
+  {
+    icon: <FaGlobe size={48} />,
+    title: 'HTTP + Shared Preferences',
+    description: 'Cliente HTTP conecta con API REST del backend. Shared Preferences almacena tokens y datos persistentes de sesión de forma local y segura.',
+    category: 'frontend',
+  },
+  {
+    icon: <FaPalette size={48} />,
+    title: 'Material Design 3 + Responsive UI',
+    description: 'Interfaz bajo Material Design 3, esquema de colores personalizado desde .env y diseño responsive adaptativo para web y dispositivos móviles.',
+    category: 'frontend',
   },
 ];
 
 export const TechnologyStack: React.FC = () => {
+  const backendTechs = technologies.filter(tech => tech.category === 'backend');
+  const frontendTechs = technologies.filter(tech => tech.category === 'frontend');
+
+  const renderTechCards = (techs: Tech[]) => (
+    <TechGrid>
+      {techs.map((tech, index) => (
+        <TechCard
+          key={index}
+          initial={{ 
+            opacity: 0, 
+            y: 30,
+            scale: 0.95
+          }}
+          whileInView={{ 
+            opacity: 1, 
+            y: 0,
+            scale: 1
+          }}
+          transition={{ 
+            duration: 0.5, 
+            delay: index * 0.1,
+            ease: "easeOut"
+          }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <IconWrapper
+            whileHover={{ 
+              rotate: 10, 
+              scale: 1.1 
+            }}
+            transition={{ 
+              type: 'spring', 
+              stiffness: 300,
+              damping: 10
+            }}
+          >
+            {tech.icon}
+          </IconWrapper>
+          <TechTitle level={4}>{tech.title}</TechTitle>
+          <TechDescription size="sm">{tech.description}</TechDescription>
+        </TechCard>
+      ))}
+    </TechGrid>
+  );
+
   return (
     <StyledTechStack id="tecnologia">
       <Container>
         <SectionHeader>
           <Heading level={1}>Tecnología de Vanguardia</Heading>
           <Text size="lg">
-            Nuestro stack tecnológico combina lo mejor de la IA moderna con arquitecturas probadas para ofrecer respuestas legales precisas y confiables
+            LexIA está construido con un stack tecnológico robusto que combina un backend potente en Python con un frontend multiplataforma en Flutter, garantizando escalabilidad, seguridad y experiencia de usuario excepcional
           </Text>
         </SectionHeader>
 
-        <TechGrid>
-          {technologies.map((tech, index) => (
-            <TechCard
-              key={index}
-              initial={{ 
-                opacity: 0, 
-                y: 50,
-                scale: 0.9,
-                filter: 'blur(10px)'
-              }}
-              whileInView={{ 
-                opacity: 1, 
-                y: 0,
-                scale: 1,
-                filter: 'blur(0px)'
-              }}
-              transition={{ 
-                duration: 0.7, 
-                delay: index * 0.15,
-                ease: "easeOut"
-              }}
-              viewport={{ once: true, amount: 0.2 }}
-              whileHover={{ 
-                y: -8,
-                scale: 1.02,
-                transition: {
-                  duration: 0.4,
-                  ease: "easeOut"
-                }
-              }}
-            >
-              <IconWrapper
-                whileHover={{ 
-                  rotate: 10, 
-                  scale: 1.1 
-                }}
-                transition={{ 
-                  type: 'spring', 
-                  stiffness: 300,
-                  damping: 10
-                }}
-              >
-                {tech.icon}
-              </IconWrapper>
-              <TechTitle level={4}>{tech.title}</TechTitle>
-              <TechDescription size="sm">{tech.description}</TechDescription>
-            </TechCard>
-          ))}
-        </TechGrid>
+        <CategorySection>
+          <CategoryTitle level={2}>Backend</CategoryTitle>
+          {renderTechCards(backendTechs)}
+        </CategorySection>
+
+        <CategorySection>
+          <CategoryTitle level={2}>Frontend</CategoryTitle>
+          {renderTechCards(frontendTechs)}
+        </CategorySection>
       </Container>
     </StyledTechStack>
   );

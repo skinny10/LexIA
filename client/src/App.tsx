@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { motion } from 'framer-motion';
+import aiIllustration from '../src/assets/ai-illustration-manos.jpg';
 import { theme } from '@/styles/theme';
 import { GlobalStyles } from '@/styles/GlobalStyles';
 import { Header, Hero, DemoSection, FeaturesSection, HowItWorks, WhyUseLexIA, TechnologyStack, FooterSection } from '@/components';
@@ -25,7 +26,7 @@ function App() {
         description="Obtén respuestas legales instantáneas con IA. Pregunta en lenguaje natural y recibe orientación legal precisa, referencias a leyes aplicables y pasos a seguir."
         primaryButtonText="Ver Aplicación en Revisión"
         secondaryButtonText="Ver Planes"
-        illustrationImage="/ai-illustration.png"
+        illustrationImage={aiIllustration}
         onPrimaryClick={handlePrimaryClick}
         onSecondaryClick={handleSecondaryClick}
       />

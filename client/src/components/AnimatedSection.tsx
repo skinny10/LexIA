@@ -10,29 +10,27 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, delay = 0 }
   const variants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.95,
-      filter: 'blur(10px)',
+      y: 30,
+      scale: 0.98,
       transition: {
-        duration: 0.8,
-        ease: "easeInOut"
+        duration: 0.5,
+        ease: "easeIn"
       }
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: 'blur(0px)',
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         delay: delay,
         ease: "easeOut",
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
         when: "beforeChildren"
       },
     },
     hover: {
-      scale: 1.02,
+      scale: 1.01,
       transition: {
         duration: 0.3,
         ease: "easeInOut"
@@ -45,10 +43,10 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, delay = 0 }
       initial="hidden"
       whileInView="visible"
       whileHover="hover"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={variants}
       style={{
-        willChange: 'transform',
+        willChange: 'transform, opacity',
         transformStyle: 'preserve-3d'
       }}
     >
