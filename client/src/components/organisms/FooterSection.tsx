@@ -240,7 +240,7 @@ export const FooterSection: React.FC = () => {
               Democratizando el acceso a la orientación legal con inteligencia artificial de vanguardia. Respuestas legales precisas, instantáneas y accesibles para todos.
             </Text>
             <SocialLinks>
-              <a href="#facebook" title="Facebook" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/profile.php?id=61583890282225" title="Facebook" target="_blank" rel="noopener noreferrer">
                 <FaFacebook size={20} />
               </a>
               <a href="#instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
