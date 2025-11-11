@@ -44,6 +44,31 @@ const FooterBrand = styled.div`
   }
 `;
 
+const BrandRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${theme.spacing.md};
+
+  img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  span {
+    font-size: ${theme.typography.fontSize.lg};
+    font-weight: ${theme.typography.fontWeight.bold};
+    color: ${theme.colors.text.inverse};
+  }
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    gap: ${theme.spacing.sm};
+    span {
+      font-size: ${theme.typography.fontSize.base};
+    }
+  }
+`;
+
 const SocialLinks = styled.div`
   display: flex;
   gap: ${theme.spacing.md};
@@ -112,8 +137,13 @@ const FooterCol = styled.div`
 
 const FooterDivider = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-top: ${theme.spacing['2xl']};
-  margin-top: ${theme.spacing['2xl']};
+  padding-top: ${theme.spacing.xl};
+  margin-top: ${theme.spacing.xl};
+
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding-top: ${theme.spacing.md};
+    margin-top: ${theme.spacing.md};
+  }
 `;
 
 const FooterBottom = styled.div`
@@ -202,10 +232,10 @@ export const FooterSection: React.FC = () => {
       <Container>
         <FooterContent>
           <FooterBrand>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <img src="/logo.png" alt="LexIA" style={{ height: '40px' }} />
-              <span style={{ fontSize: '24px', fontWeight: 'bold' }}>LexIA</span>
-            </div>
+            <BrandRow>
+              <img src="/logo.png" alt="LexIA" />
+              <span>LexIA</span>
+            </BrandRow>
             <Text size="sm" color="inverse">
               Democratizando el acceso a la orientación legal con inteligencia artificial de vanguardia. Respuestas legales precisas, instantáneas y accesibles para todos.
             </Text>

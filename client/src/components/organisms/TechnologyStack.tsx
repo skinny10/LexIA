@@ -21,7 +21,8 @@ const StyledTechStack = styled.section`
   }
 
   @media (max-width: ${theme.breakpoints.md}) {
-    padding: ${theme.spacing['2xl']} 0;
+    /* reduce outer padding on small devices to avoid large whitespace */
+    padding: ${theme.spacing.lg} 0;
   }
 `;
 
@@ -98,6 +99,11 @@ const TechCard = styled(motion.div)`
       opacity: 1;
     }
   }
+
+  /* make cards more compact on small screens */
+  @media (max-width: ${theme.breakpoints.md}) {
+    padding: ${theme.spacing.lg};
+  }
 `;
 
 const IconWrapper = styled(motion.div)`
@@ -170,6 +176,14 @@ const IconWrapper = styled(motion.div)`
       transform: rotate(360deg);
     }
   }
+
+  /* scale down icon wrapper on smaller screens */
+  @media (max-width: ${theme.breakpoints.md}) {
+    font-size: 36px;
+    height: 72px;
+    width: 72px;
+    margin-bottom: ${theme.spacing.md};
+  }
 `;
 
 const TechTitle = styled(Heading)`
@@ -187,8 +201,12 @@ const TechDescription = styled(Text)`
 const CategorySection = styled.div`
   margin-bottom: ${theme.spacing['4xl']};
 
+  @media (max-width: ${theme.breakpoints.lg}) {
+    margin-bottom: ${theme.spacing['2xl']};
+  }
+
   @media (max-width: ${theme.breakpoints.md}) {
-    margin-bottom: ${theme.spacing['3xl']};
+    margin-bottom: ${theme.spacing.xl};
   }
 `;
 
