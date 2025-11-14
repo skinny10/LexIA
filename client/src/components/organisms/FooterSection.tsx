@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FaFacebook, FaInstagram, FaX, FaTwitter } from 'react-icons/fa6';
 import { theme } from '@/styles/theme';
 import { Container } from '@/components/molecules';
-import { Text, Heading } from '@/components/atoms';
+import { Text, Heading, Button } from '@/components/atoms';
 
 const StyledFooter = styled.footer`
   background-color: ${theme.colors.tertiary.main};
@@ -175,7 +175,7 @@ const Disclaimer = styled.p`
   border-left: 3px solid ${theme.colors.secondary.main};
 `;
 
-export const FooterSection: React.FC = () => {
+export const FooterSection: React.FC<{ navigateTo?: (path: string) => void }> = ({ navigateTo }) => {
   const [openModal, setOpenModal] = useState<'about' | 'privacy' | 'terms' | null>(null);
 
   const closeModal = () => setOpenModal(null);
@@ -224,6 +224,19 @@ export const FooterSection: React.FC = () => {
 
   const ModalSection = styled.div`
     margin-bottom: ${theme.spacing['2xl']};
+  `;
+
+  const ModalActions = styled.div`
+    display: flex;
+    gap: ${theme.spacing.md};
+    margin-top: ${theme.spacing.lg};
+    justify-content: flex-end;
+
+    @media (max-width: ${theme.breakpoints.md}) {
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: stretch;
+    }
   `;
 
   return (
@@ -297,7 +310,19 @@ export const FooterSection: React.FC = () => {
           </CloseButton>
           <ModalTitle level={2}>Política de Privacidad</ModalTitle>
           <ModalText size="sm">Recopilamos únicamente los datos necesarios para prestar el servicio (p. ej. correo, nombre y detalles de consulta). Usamos medidas de seguridad para proteger la información y no compartimos datos personales sin consentimiento, salvo obligaciones legales.</ModalText>
-  
+          <ModalActions>
+            <Button variant="outline" size="sm" onClick={closeModal}>Cerrar</Button>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => {
+                closeModal();
+                if (navigateTo) navigateTo('/aviso-de-privacidad');
+              }}
+            >
+              Ver más
+            </Button>
+          </ModalActions>
         </ModalContent>
       </ModalOverlay>
     )}
