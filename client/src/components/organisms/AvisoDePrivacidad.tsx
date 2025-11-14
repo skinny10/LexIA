@@ -78,7 +78,7 @@ const Contact = styled.a`
 export const AvisoDePrivacidad: React.FC = () => {
   const handleBack = () => window.history.back();
 
-  const contactPlaceholder = '[CORREO ELECTRÓNICO O FORMULARIO DE CONTACTO PARA PRIVACIDAD]';
+  const contactEmail = 'lexia1388@gmail.com';
 
   return (
     <Page>
@@ -94,7 +94,7 @@ export const AvisoDePrivacidad: React.FC = () => {
             LexIA – Asistente Jurídico Inteligente y Explicativo (en adelante, "LexIA" o "El Responsable") es responsable del tratamiento de sus datos personales.
           </Text>
           <Text size="sm">
-            Domicilio: El domicilio para oír y recibir notificaciones es el que se establezca en el momento de la constitución legal de la entidad responsable del proyecto. Para efectos de este Aviso de Privacidad, se señala el domicilio virtual de contacto: <Contact>{contactPlaceholder}</Contact>.
+            Domicilio: El domicilio para oír y recibir notificaciones es el que se establezca en el momento de la constitución legal de la entidad responsable del proyecto. Para efectos de este Aviso de Privacidad, se señala el domicilio virtual de contacto: <Contact href={`mailto:${contactEmail}`}>{contactEmail}</Contact>.
           </Text>
         </Section>
 
@@ -150,7 +150,7 @@ export const AvisoDePrivacidad: React.FC = () => {
           <Text size="sm"><strong>Finalidades Secundarias (No necesarias para la prestación del servicio)</strong></Text>
           <Text size="sm">1. Envío de comunicaciones promocionales: Enviar información sobre nuevos servicios, funcionalidades o promociones de LexIA.</Text>
           <Text size="sm">2. Estudios de mercado y encuestas de calidad: Realizar análisis estadísticos y de calidad para evaluar la satisfacción del usuario.</Text>
-          <Text size="sm">Nota: El titular tiene un plazo de cinco días hábiles para manifestar su negativa al tratamiento de sus datos personales para las finalidades secundarias, enviando un correo electrónico a {contactPlaceholder}.</Text>
+          <Text size="sm">Nota: El titular tiene un plazo de cinco días hábiles para manifestar su negativa al tratamiento de sus datos personales para las finalidades secundarias, enviando un correo electrónico a <Contact href={`mailto:${contactEmail}`}>{contactEmail}</Contact>.</Text>
         </Section>
 
         <Section>
@@ -165,19 +165,19 @@ export const AvisoDePrivacidad: React.FC = () => {
         <Section>
           <Heading level={3}>5. Medios y Procedimiento para Ejercer los Derechos ARCO</Heading>
           <Text size="sm">Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada conforme a los principios, deberes y obligaciones previstas en la normativa (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición).</Text>
-          <Text size="sm">Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a través de un correo electrónico a {contactPlaceholder}, o mediante escrito libre dirigido a nuestro domicilio.</Text>
+          <Text size="sm">Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva a través de un correo electrónico a <Contact href={`mailto:${contactEmail}`}>{contactEmail}</Contact>, o mediante escrito libre dirigido a nuestro domicilio.</Text>
           <Text size="sm">La solicitud deberá contener y acompañar lo siguiente: a) El nombre del titular y domicilio u otro medio para comunicarle la respuesta a su solicitud. b) Los documentos que acrediten la identidad o, en su caso, la representación legal del titular. c) La descripción clara y precisa de los datos personales respecto de los que se busca ejercer alguno de los derechos antes mencionados. d) Cualquier otro elemento o documento que facilite la localización de los datos personales.</Text>
         </Section>
 
         <Section>
           <Heading level={3}>6. Mecanismos y Procedimiento para Revocar el Consentimiento</Heading>
           <Text size="sm">Usted puede revocar el consentimiento que, en su caso, nos haya otorgado para el tratamiento de sus datos personales. Sin embargo, es importante que tenga en cuenta que no en todos los casos podremos atender su solicitud o concluir el uso de forma inmediata, ya que es posible que por alguna obligación legal queramos seguir tratando sus datos personales.</Text>
-          <Text size="sm">Para revocar su consentimiento, deberá presentar su solicitud a través de un correo electrónico a {contactPlaceholder}, siguiendo el mismo procedimiento y requisitos establecidos para el ejercicio de los derechos ARCO.</Text>
+          <Text size="sm">Para revocar su consentimiento, deberá presentar su solicitud a través de un correo electrónico a <Contact href={`mailto:${contactEmail}`}>{contactEmail}</Contact>, siguiendo el mismo procedimiento y requisitos establecidos para el ejercicio de los derechos ARCO.</Text>
         </Section>
 
         <Section>
           <Heading level={3}>7. Opciones y Medios para Limitar el Uso o Divulgación de sus Datos Personales</Heading>
-          <Text size="sm">Usted puede limitar el uso y divulgación de sus datos personales para finalidades secundarias a través de la manifestación de su negativa en el plazo de cinco días hábiles, o en cualquier momento posterior, enviando un correo electrónico a {contactPlaceholder}.</Text>
+          <Text size="sm">Usted puede limitar el uso y divulgación de sus datos personales para finalidades secundarias a través de la manifestación de su negativa en el plazo de cinco días hábiles, o en cualquier momento posterior, enviando un correo electrónico a <Contact href={`mailto:${contactEmail}`}>{contactEmail}</Contact>.</Text>
         </Section>
 
         <Section>
